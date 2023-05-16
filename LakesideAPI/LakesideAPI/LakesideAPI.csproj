@@ -18,6 +18,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Requests\" />
+    <Folder Include="Response\" />
   </ItemGroup>
 
 </Project>
