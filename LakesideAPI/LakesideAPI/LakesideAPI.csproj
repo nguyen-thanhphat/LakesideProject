@@ -17,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Services\" />
-    <Folder Include="Response\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>
