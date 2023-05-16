@@ -8,7 +8,7 @@ namespace LakesideAPI.Models
         public int MaLoaiPhong { get; set; }
 
         [Required, MaxLength(255)]
-        public string? tenLoaiPhong { get; set; }
+        public string? TenLoaiPhong { get; set; }
         public string? TienIch { get; set; }
         public string? NhinRa { get; set; }
         public string? KichCo { get; set; }

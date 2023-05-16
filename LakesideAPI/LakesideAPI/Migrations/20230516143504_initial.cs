@@ -29,7 +29,7 @@ namespace LakesideAPI.Migrations
                 {
                     MaLoaiPhong = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    tenLoaiPhong = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    TenLoaiPhong = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     TienIch = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NhinRa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     KichCo = table.Column<string>(type: "nvarchar(max)", nullable: true),

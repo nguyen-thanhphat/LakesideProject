@@ -161,16 +161,16 @@ namespace LakesideAPI.Migrations
                     b.Property<int>("SucChua")
                         .HasColumnType("int");
 
+                    b.Property<string>("TenLoaiPhong")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("TienIch")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("tenLoaiPhong")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("MaLoaiPhong");
 

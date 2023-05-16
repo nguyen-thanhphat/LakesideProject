@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LakesideAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230516142326_initial")]
+    [Migration("20230516143504_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,16 +163,16 @@ namespace LakesideAPI.Migrations
                     b.Property<int>("SucChua")
                         .HasColumnType("int");
 
+                    b.Property<string>("TenLoaiPhong")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("TienIch")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("tenLoaiPhong")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("MaLoaiPhong");
 
