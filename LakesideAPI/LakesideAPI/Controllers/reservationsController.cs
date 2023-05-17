@@ -99,7 +99,11 @@ namespace LakesideAPI.Controllers
                     dp.NgayDat,
                     dp.NgayNhan,
                     dp.NgayTra,
-                    dp.TrangThai
+                    dp.TrangThai,
+                    dp.TenKhachHang,
+                    dp.Email,
+                    dp.SoDinhDanh,
+                    dp.SoDienThoai
                 })
                 .ToList();
 
