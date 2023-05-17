@@ -10,7 +10,7 @@ namespace LakesideAPI.Requests
         public int MaDatPhong { get; set; }
         public string? TenPhong { get; set; }
         public string? LoaiPhong { get; set; }
-        public string? PhuongThuc { get; set; }
+        public int MaPhuongThuc { get; set; }
 
         public float GiaPhong { get; set; }
         public int SoNgayDat { get; set; }
