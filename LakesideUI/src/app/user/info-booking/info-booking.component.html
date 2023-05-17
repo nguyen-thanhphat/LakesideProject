@@ -1,0 +1,121 @@
+<div class="container d-flex flex-column">
+    <div class="card m-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://cdn.vietnammoi.vn/1881912202022777/images/anh-phong-ngu-chill-1-20220518180445531.jpg?width=700"
+                    class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">Loại phòng : {{ searchResult.tenLoaiPhong }}</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-text">Số phòng : {{ searchResult.tenPhong }}</h4>
+                            <p class="card-text">Thông tin : {{ searchResult.thongTin }}</p>
+                            <p class="card-text">Kích cỡ : {{ searchResult.kichCo }}</p>
+                            <p class="card-text">Giá phòng : {{ searchResult.giaPhong | currency:'VND' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-text">Tiện ích</p>
+                            <ul>
+                                <li *ngFor="let tienIch of searchResult.tienIch.split('\r\n')">{{ tienIch }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <!-- <img class="d-block mx-auto mb-4" src="../../../assets/images/logoLakeside.png" alt="" width="72"
+                    height="57"> -->
+                <h2>Tiến hành đặt phòng</h2>
+            </div>
+    
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">Chi tiết đặt phòng</span>
+                        <span class="badge bg-primary rounded-pill">3</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Ngày đặt</h6>
+                                <small class="text-body-secondary">Bắt đầu</small>
+                            </div>       
+                            <span class="text-body-secondary">{{checkIn}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Ngày trả</h6>
+                                <small class="text-body-secondary">Kết thúc</small>
+                            </div>       
+                            <span class="text-body-secondary">{{checkOut}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Giá / Ngày</h6>
+                            </div>    
+                            <span class="text-body-secondary">{{ searchResult.giaPhong | currency:'VND' }}</span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Số ngày đặt</h6>
+                            </div>    
+                            <span class="text-body-secondary">{{days}} : Ngày</span>   
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Tổng tiền</span>
+                            <strong>{{ totalPrice | currency:'VND' }}</strong>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Thông tin thanh toán</h4>
+                    <form class="needs-validation" (ngSubmit)="postData()"  novalidate>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Tên khách hàng</label>
+                                <input type="text" class="form-control" name="tenKhachHang" [(ngModel)]="formBooking.tenKhachHang" required>
+                                <div class="invalid-feedback">
+                                    Yêu cầu nhập tên vào?
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" name="soDienThoai" [(ngModel)]="formBooking.soDienThoai" required>
+                                <div class="invalid-feedback">
+                                    Nhập số điện thoại?
+                                </div>
+                            </div>  
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email
+                                    <!-- <span class="text-body-secondary">(Optional)</span> -->
+                                </label>
+                                <input type="text" class="form-control" name="email" [(ngModel)]="formBooking.email" required>
+                                <div class="invalid-feedback">
+                                    Làm ơn nhập email vào cho tôi với!
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="address" class="form-label">Số căn cước công dân</label>
+                                <input type="text" class="form-control" name="soDinhDanh" [(ngModel)]="formBooking.soDinhDanh" required>
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space" style="height: 40px;"></div>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Thanh toán</button>
+                    </form>
+                    <div class="space" style="height: 40px;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

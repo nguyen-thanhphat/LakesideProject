@@ -8,6 +8,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { InfoNewComponent } from './info-new/info-new.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfoBookingComponent } from './info-booking/info-booking.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainComponent,
     FeedbackComponent,
     InfoNewComponent,
-    IntroduceComponent
+    IntroduceComponent,
+    InfoBookingComponent
   ],
   imports: [
     CommonModule,
