@@ -18,14 +18,14 @@ namespace LakesideAPI.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<ActionResult<IEnumerable<ThongTin>>> GetListThongTin()
         {
             return await _context.ThongTin.ToListAsync();
         }
 
         // GET: api/ThongTin/5
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<ActionResult<ThongTin>> GetThongTin(int id)
         {
             var thongTin = await _context.ThongTin.FindAsync(id);
@@ -39,7 +39,7 @@ namespace LakesideAPI.Controllers
         }
 
         // PUT: api/ThongTin/5
-        [HttpPut("{id}")]
+        [HttpPut("editby/{id}")]
         public async Task<IActionResult> PutThongTin(int id, ThongTin thongTin)
         {
             if (id != thongTin.MaThongTin)
@@ -69,7 +69,7 @@ namespace LakesideAPI.Controllers
         }
 
         // POST: api/ThongTin
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<ThongTin>> PostThongTin(ThongTin thongTin)
         {
             _context.ThongTin.Add(thongTin);
@@ -79,7 +79,7 @@ namespace LakesideAPI.Controllers
         }
 
         // DELETE: api/ThongTin/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delby/{id}")]
         public async Task<ActionResult<ThongTin>> DeleteThongTin(int id)
         {
             var thongTin = await _context.ThongTin.FindAsync(id);

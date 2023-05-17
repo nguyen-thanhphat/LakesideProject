@@ -17,13 +17,13 @@ namespace LakesideAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<ActionResult<IEnumerable<LoaiPhong>>> GetAll()
         {
             return await _context.LoaiPhong.ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<ActionResult<LoaiPhong>> GetById(int id)
         {
             var loaiPhong = await _context.LoaiPhong.FindAsync(id);
@@ -36,8 +36,7 @@ namespace LakesideAPI.Controllers
             return loaiPhong;
         }
 
-
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<LoaiPhong>> Create(LoaiPhong loaiPhong)
         {
             if (ModelState.IsValid)
@@ -50,7 +49,7 @@ namespace LakesideAPI.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("editby/{id}")]
         public async Task<IActionResult> Update(int id, LoaiPhong loaiPhong)
         {
             if (id != loaiPhong.MaLoaiPhong)
@@ -84,7 +83,7 @@ namespace LakesideAPI.Controllers
             return _context.LoaiPhong.Any(e => e.MaLoaiPhong == id);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delby/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var loaiPhong = await _context.LoaiPhong.FindAsync(id);
@@ -99,7 +98,7 @@ namespace LakesideAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}/upload-image")]
+        [HttpPost("upload-image/{id}")]
         public async Task<ActionResult> UploadImage(int id, IFormFile file)
         {
             var loaiPhong = await _context.LoaiPhong.FindAsync(id);
@@ -128,5 +127,22 @@ namespace LakesideAPI.Controllers
 
             return Ok(new { message = "Upload hình ảnh thành công." });
         }
+
+        [HttpGet("roomby/{idtype}")]
+        public IActionResult GetDanhSachPhongTheoMaLoai(int idtype)
+        {
+            var danhSachPhong = _context.Phong
+                .Where(p => p.MaLoaiPhong == idtype)
+                .Select(p => new
+                {
+                    MaPhong = p.MaPhong,
+                    TenPhong = p.TenPhong,
+                    // Các thuộc tính khác của phòng
+                })
+                .ToList();
+
+            return Ok(danhSachPhong);
+        }
+
     }
 }

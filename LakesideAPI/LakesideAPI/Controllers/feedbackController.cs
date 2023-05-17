@@ -17,14 +17,14 @@ namespace LakesideAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<ActionResult<IEnumerable<PhanHoi>>> GetListPhanHoi()
         {
             return await _context.PhanHoi.ToListAsync();
         }
 
         // GET: api/PhanHoi/5
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<ActionResult<PhanHoi>> GetPhanHoi(int id)
         {
             var phanHoi = await _context.PhanHoi.FindAsync(id);
@@ -38,7 +38,7 @@ namespace LakesideAPI.Controllers
         }
 
         // PUT: api/PhanHoi/5
-        [HttpPut("{id}")]
+        [HttpPut("editby/{id}")]
         public async Task<IActionResult> PutPhanHoi(int id, PhanHoi phanHoi)
         {
             if (id != phanHoi.MaPhanHoi)
@@ -68,7 +68,7 @@ namespace LakesideAPI.Controllers
         }
 
         // POST: api/ThongTin
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<PhanHoi>> PostPhanHoi(PhanHoi phanHoi)
         {
             _context.PhanHoi.Add(phanHoi);
@@ -78,7 +78,7 @@ namespace LakesideAPI.Controllers
         }
 
         // DELETE: api/ThongTin/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delby/{id}")]
         public async Task<ActionResult<PhanHoi>> DeletePhanHoi(int id)
         {
             var phanHoi = await _context.PhanHoi.FindAsync(id);

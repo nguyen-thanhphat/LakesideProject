@@ -18,7 +18,7 @@ namespace LakesideAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("phongtrong/{ngayNhan}/{ngayTra}/{maLoaiPhong}")]
+        [HttpGet("room-by/{ngayNhan}/{ngayTra}/{maLoaiPhong}")]
         public async Task<ActionResult<SearchPhong>> GetPhongTrong(DateTime ngayNhan, DateTime ngayTra, int maLoaiPhong)
         {
             // Lấy danh sách các mã phòng đã có trong đặt phòng trong khoảng thời gian

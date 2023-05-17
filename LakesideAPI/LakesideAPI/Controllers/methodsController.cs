@@ -18,14 +18,14 @@ namespace LakesideAPI.Controllers
         }
 
         // GET: api/PhuongThucThanhToans
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<ActionResult<IEnumerable<PhuongThucThanhToan>>> GetPhuongThucThanhToans()
         {
             return await _context.PhuongthucThanhtoan.ToListAsync();
         }
 
         // GET: api/PhuongThucThanhToans/5
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<ActionResult<PhuongThucThanhToan>> GetPhuongThucThanhToan(int id)
         {
             var phuongThucThanhToan = await _context.PhuongthucThanhtoan.FindAsync(id);
@@ -39,7 +39,7 @@ namespace LakesideAPI.Controllers
         }
 
         // PUT: api/PhuongThucThanhToans/5
-        [HttpPut("{id}")]
+        [HttpPut("editby/{id}")]
         public async Task<IActionResult> PutPhuongThucThanhToan(int id, PhuongThucThanhToan phuongThucThanhToan)
         {
             if (id != phuongThucThanhToan.MaPhuongThuc)
@@ -69,7 +69,7 @@ namespace LakesideAPI.Controllers
         }
 
         // POST: api/PhuongThucThanhToans
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<PhuongThucThanhToan>> PostPhuongThucThanhToan(PhuongThucThanhToan phuongThucThanhToan)
         {
             _context.PhuongthucThanhtoan.Add(phuongThucThanhToan);
@@ -79,7 +79,7 @@ namespace LakesideAPI.Controllers
         }
 
         // DELETE: api/PhuongThucThanhToans/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delby/{id}")]
         public async Task<ActionResult<PhuongThucThanhToan>> DeletePhuongThucThanhToan(int id)
         {
             var phuongThucThanhToan = await _context.PhuongthucThanhtoan.FindAsync(id);

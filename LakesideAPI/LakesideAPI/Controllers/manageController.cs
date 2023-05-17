@@ -16,7 +16,7 @@ namespace LakesideAPI.Controllers
             _context = context;
         }
 
-        [HttpPut("trang-thai/{id}")]
+        [HttpPut("edit-state/{id}")]
         public IActionResult UpdateDatPhongTrangThai(int id, [FromBody] UpdateState request)
         {
             var datPhong = _context.DatPhong.FirstOrDefault(dp => dp.MaDatphong == id);
@@ -35,7 +35,7 @@ namespace LakesideAPI.Controllers
         }
 
         //Hiển thị những đơn đặt phòng có cùng trạng thái
-        [HttpGet("trangthai/{trangThai}")]
+        [HttpGet("get-states/{trangThai}")]
         public IActionResult GetDatPhongByTrangThai(string trangThai)
         {
             var datPhongs = _context.DatPhong

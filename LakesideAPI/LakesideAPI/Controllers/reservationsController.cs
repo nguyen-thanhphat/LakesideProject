@@ -19,7 +19,7 @@ namespace LakesideAPI.Controllers
         }
 
         #region Đăt phòng khách sạn 
-        [HttpPost("dat-phong")]
+        [HttpPost("create")]
         public IActionResult DatPhong([FromBody] AddDatPhong request)
         {
             // Kiểm tra tính hợp lệ của request và xử lý lỗi nếu cần
@@ -83,7 +83,7 @@ namespace LakesideAPI.Controllers
         }
         #endregion
 
-        [HttpGet("danh-sach")]
+        [HttpGet("getlist")]
         public IActionResult GetListDatPhong()
         {
             var danhSachDatPhong = _context.DatPhong

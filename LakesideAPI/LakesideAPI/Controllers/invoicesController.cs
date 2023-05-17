@@ -18,7 +18,7 @@ namespace LakesideAPI.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public IActionResult CreateHoaDon([FromBody] AddHoaDon request)
         {
             if (!ModelState.IsValid)
@@ -55,14 +55,14 @@ namespace LakesideAPI.Controllers
             return Created("", hoaDon);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public IActionResult GetHoaDons()
         {
             var hoaDons = _context.HoaDon.ToList();
             return Ok(hoaDons);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public IActionResult GetHoaDonById(int id)
         {
             var hoaDon = _context.HoaDon.FirstOrDefault(hd => hd.MaHoaDon == id);

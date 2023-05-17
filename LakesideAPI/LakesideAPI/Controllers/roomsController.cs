@@ -19,14 +19,14 @@ namespace LakesideAPI.Controllers
         }
 
         // GET: List room
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<ActionResult<IEnumerable<Phong>>> GetPhongs()
         {
             return await _context.Phong.ToListAsync();
         }
 
         // GET: Room by Id
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<ActionResult<Phong>> GetPhong(int id)
         {
             var phong = await _context.Phong.FindAsync(id);
@@ -40,7 +40,7 @@ namespace LakesideAPI.Controllers
         }
 
         // POST: api/Phongs
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<ActionResult<Phong>> TaoPhong(int maLoaiPhong)
         {
             // Tìm loại phòng tương ứng với mã loại phòng được cung cấp
@@ -73,7 +73,7 @@ namespace LakesideAPI.Controllers
             return _context.Phong.Any(e => e.MaPhong == id);
         }
 
-        [HttpGet("loaiphong/{id}")]
+        [HttpGet("get-type/{id}")]
         public async Task<ActionResult<SearchPhong>> GetPhongInfo(int id)
         {
             var phong = await _context.Phong.Include(p => p.LoaiPhong)
@@ -101,7 +101,7 @@ namespace LakesideAPI.Controllers
         }
 
         //Edit only roomType ForeignKey
-        [HttpPut("loaiphong/{id}")]
+        [HttpPut("edittypeby/{id}")]
         public IActionResult SuaLoaiPhong(int id, [FromBody] UpdatePhong request)
         {
             var phong = _context.Phong.FirstOrDefault(p => p.MaPhong == id);
