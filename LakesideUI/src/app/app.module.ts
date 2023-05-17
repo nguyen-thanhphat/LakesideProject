@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SearchRoomService } from './user/services/search-room.service';
+import { RoomTypeService } from './user/services/room-type.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SearchRoomService, RoomTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

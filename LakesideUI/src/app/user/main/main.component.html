@@ -1,1 +1,70 @@
-<p>main works!</p>
+<div class="container border-top rounded-lg p-4" style="width: 80%; padding-top: 150px; margin-top: 150px;">
+    <h3>Đặt phòng ngay</h3>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div style="height: 20px;"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="checkInDate" class="form-label">Check-in</label>
+                <input type="date" class="form-control" formControlName="checkIn">
+            </div>
+            <div class="col-md-3">
+                <label for="checkOutDate" class="form-label">Check-out</label>
+                <input type="date" class="form-control" formControlName="checkOut">
+            </div>
+            <div class="col-md-2">
+                <label for="number1" class="form-label">Số người</label>
+                <input type="number" class="form-control" id="number1" min="1" max="8" name="so1">
+            </div>
+            <div class="col-md-2">
+                <label for="number2" class="form-label">Loại phòng</label>
+                <select class="form-select" formControlName="maLoai" >
+                    <option *ngFor="let RoomItem of TypeRoomArray" [value]="RoomItem.maLoaiPhong">{{RoomItem.tenLoaiPhong}}</option>
+                  </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Đặt ngay</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Các kiểu phòng cho bạn thoả sức</h1>
+            <p class="lead text-body-secondary"><code>Danh sách thông tin các phòng</code>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div *ngFor="let RoomTypeItem of TypeRoomArray" class="col-sm-4">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>{{RoomTypeItem.giaPhong}}</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <image xlink:href="https://cdnimg.vietnamplus.vn/uploaded/izhsa/2017_06_21/4presidential_suite_bedroom.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+                        </svg>
+                        
+                        <div class="card-body">
+                            <h6 style="color: #FF0000;">{{RoomTypeItem.tenLoaiPhong}}</h6>
+                            <p class="card-text">Tiện ích : {{RoomTypeItem.tienIch}}</p>
+                            <p class="card-text">Thông tin : {{RoomTypeItem.thongTin}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-outline-info">Đăt phòng</button>
+                                <small class="text-body-secondary">Kích cỡ: {{RoomTypeItem.kichCo}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-info-new></app-info-new>
+<app-feedback></app-feedback>
