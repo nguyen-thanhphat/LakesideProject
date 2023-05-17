@@ -32,6 +32,10 @@ namespace LakesideAPI.Controllers
                 NgayTra = request.NgayTra,
                 TrangThai = "Đã đặt",
                 MaPhong = request.MaPhong,
+                TenKhachHang = request.TenKhachHang,
+                SoDienThoai = request.SoDienThoai,
+                SoDinhDanh = request.SoDinhDanh,
+                Email = request.Email
             };
 
             // Lấy thông tin phòng từ cơ sở dữ liệu
