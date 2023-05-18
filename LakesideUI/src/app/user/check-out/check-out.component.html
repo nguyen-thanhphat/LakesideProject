@@ -1,0 +1,50 @@
+<div class="container d-flex flex-column">
+    <div class="card m-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://cdn.vietnammoi.vn/1881912202022777/images/anh-phong-ngu-chill-1-20220518180445531.jpg?width=700"
+                    class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4>Thông tin hoá đơn</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-text">Khách hàng: {{ formData.tenKhachHang }} </h4>
+                            <h6 class="card-text">Thông tin : {{loaiPhong}}</h6>
+                            <p class="card-text">Số điện thoại:{{ formData.soDienThoai}}</p>
+                            <p class="card-text">Số căn cước: {{formData.soDinhDanh}}</p>
+                            <p class="card-text">Email: {{formData.email}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="card-text">Chi tiết đặt phòng</h6>
+                            <p class="card-text">Check-In  : {{formData.ngayNhan}}</p>
+                            <p class="card-text">Check-Out : {{formData.ngayTra}}</p>
+                            <p class="card-text">Giá phòng : {{giaPhong}}/ngày </p>
+                            <p class="card-text">Số ngày đặt : {{days}} ngày </p>
+                            <p class="card-text">Tổng giá :   {{totalPrice}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-title">
+                                Phương thức thanh toán:
+                                <select class="form-select" aria-label="Select Room Type">
+                                    <option *ngFor="let method of methodArray" [value]="method.maPhuongThuc">{{method.tenPhuongThuc}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column">
+                                <br>
+                                <button class="w-100 btn btn-primary btn-sm" type="submit">Thanh toán</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

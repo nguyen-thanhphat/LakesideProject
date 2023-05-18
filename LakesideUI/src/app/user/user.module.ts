@@ -9,6 +9,7 @@ import { InfoNewComponent } from './info-new/info-new.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoBookingComponent } from './info-booking/info-booking.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { InfoBookingComponent } from './info-booking/info-booking.component';
     FeedbackComponent,
     InfoNewComponent,
     IntroduceComponent,
-    InfoBookingComponent
+    InfoBookingComponent,
+    CheckOutComponent
   ],
   imports: [
     CommonModule,

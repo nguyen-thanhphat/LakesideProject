@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 
 @Component({
@@ -26,10 +26,13 @@ export class InfoBookingComponent implements OnInit {
   checkOut: string = '';
 
   days: number = 0;
-
   totalPrice: number = 0;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.searchResult = JSON.parse(
@@ -45,13 +48,6 @@ export class InfoBookingComponent implements OnInit {
     this.formBooking.ngayTra = this.checkOut;
     console.log(this.searchResult);
   }
-
-  // postData(){
-  //   this.formBooking.ngayNhan = this.checkIn;
-  //   this.formBooking.ngayTra = this.checkOut;
-  //   this.formBooking.maPhong = this.searchResult.maPhong;
-  //   console.log(this.formBooking);
-  // }
 
   postData() {
     this.formBooking.ngayNhan = this.checkIn;
@@ -72,6 +68,15 @@ export class InfoBookingComponent implements OnInit {
       .subscribe(
         (response: any) => {
           console.log(response);
+          this.router.navigate(['/check-out'], {
+            queryParams: {
+              formData: JSON.stringify(this.formBooking),
+              days: this.days.toString(),
+              totalPrice: this.totalPrice.toString(),
+              giaPhong: this.searchResult.giaPhong.toString(),
+              loaiPhong: this.searchResult.tenLoaiPhong,
+            },
+          });
         },
         (error) => {
           console.log(error);
