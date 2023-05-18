@@ -55,14 +55,18 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="input4" class="form-label">Tiện ích</label>
                                 <input type="text" [(ngModel)]="tienIch" [ngModelOptions]="{standalone: true}" class="form-control" id="tienIch">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="input5" class="form-label">Liên kết hình ảnh</label>
                                 <input type="text" [(ngModel)]="urlImage" [ngModelOptions]="{standalone: true}" class="form-control" id="urlImage">
                             </div>
+                            <div class="col-md-4">
+                                <label for="formFile" class="form-label">Upload Hình ảnh</label>
+                                <input class="form-control" type="file" id="formFile">
+                              </div>
                         </div>
                         <div class="btn-group me-2">
                             <button type="submit" class="btn btn-primary mt-4" (click)="save()">{{ isUpdateFormActive ?
