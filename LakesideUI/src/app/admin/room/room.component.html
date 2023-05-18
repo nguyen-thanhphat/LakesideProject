@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Quản lý phòng</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="accordion" id="accordionTypeRoom">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Thông tin loại phòng
+                </button>
+            </h2>
+
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample" >
+                <div class="accordion-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="input4" class="form-label">Tên phòng</label>
+                                <input type="text" [(ngModel)]="tenPhong" [ngModelOptions]="{standalone: true}" class="form-control" id="tenPhong" disabled="true">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="input5" class="form-label">Chọn loại phòng</label>
+                                <select id="maLoaiPhong" name="maLoaiPhong" class="form-control" [(ngModel)]="maLoaiPhong" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let roomType of roomTypes" [value]="roomType.maLoaiPhong">
+                                        {{roomType.tenLoaiPhong}}</option>
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="btn-group me-2">
+                            <button type="submit" class="btn btn-primary mt-4" (click)="save()">{{ isUpdateFormActive ?
+                                'Cập nhật' : 'Tạo mới' }}</button>
+                            <button type="button" class="btn btn-secondary mt-4" (click)="resetForm()">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card-list">
+        <div *ngFor="let RoomItem of roomArray"  class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{RoomItem.tenPhong}}</h5>
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                    (click)="setUpdate(RoomItem)"
+                    data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    >Sửa</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">Xoá</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
