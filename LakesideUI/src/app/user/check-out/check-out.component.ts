@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ConstantPool } from '@angular/compiler';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 
 @Component({
@@ -10,14 +10,19 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./check-out.component.css'],
 })
 export class CheckOutComponent {
-
+  responseData:any;
   formData: any;
+
   days: number = 0;
   totalPrice: number = 0;
   giaPhong: number = 0;
-  loaiPhong: string = '';
   methodArray: any[] = [];
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+
+  loaiPhong: string = '';
+  tenPhong: string = '';
+
+  selectedMethod: number = 0;
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.getMethods();
   }
 
@@ -27,11 +32,8 @@ export class CheckOutComponent {
     this.totalPrice = parseInt(this.route.snapshot.queryParamMap.get('totalPrice') || '0', 10);
     this.giaPhong = parseInt(this.route.snapshot.queryParamMap.get('giaPhong') || '0', 10);
     this.loaiPhong = this.route.snapshot.queryParamMap.get('loaiPhong') || '';
-    console.log(this.formData); // Sử dụng dữ liệu formData ở đây
-    console.log(this.days); // Giá trị của biến days
-    console.log(this.totalPrice); // Giá trị của biến totalPrice
-    console.log(this.giaPhong);
-    console.log(this.loaiPhong);
+    this.tenPhong = this.route.snapshot.queryParamMap.get('tenPhong') || '';
+    this.responseData = JSON.parse(this.route.snapshot.queryParamMap.get('responseData') || '{}');
   }
 
   getMethods() {
@@ -41,5 +43,32 @@ export class CheckOutComponent {
         this.methodArray = res;
         console.log(this.methodArray);
       });
+  }
+
+  createHoadon() {
+    // Tạo payload cho yêu cầu POST
+    const payload = {
+      khachHang: this.formData.tenKhachHang,
+      ngayDen: this.formData.ngayNhan,
+      ngayDi: this.formData.ngayTra,
+      maDatPhong: this.responseData.maDatPhong,
+      tenPhong: this.tenPhong, 
+      loaiPhong: this.loaiPhong,
+      maPhuongThuc: this.selectedMethod,
+      giaPhong: this.giaPhong,
+      soNgayDat: this.days,
+      tongTien: this.totalPrice
+    };
+  
+    // Gửi yêu cầu POST đến API
+    this.http.post(`${environment.apiUrl}invoices/create`, payload).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.router.navigate(['/success']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -75,6 +75,8 @@ export class InfoBookingComponent implements OnInit {
               totalPrice: this.totalPrice.toString(),
               giaPhong: this.searchResult.giaPhong.toString(),
               loaiPhong: this.searchResult.tenLoaiPhong,
+              tenPhong: this.searchResult.tenPhong,
+              responseData: JSON.stringify(response)
             },
           });
         },
