@@ -57,6 +57,7 @@ namespace LakesideAPI.Controllers
             // Tạo một đối tượng Response chứa thông tin đặt phòng, phòng
             var response = new DatPhongResponse
             {
+                MaDatPhong = datPhong.MaDatphong,
                 NgayDat = datPhong.NgayDat,
                 NgayNhan = datPhong.NgayNhan,
                 NgayTra = datPhong.NgayTra,

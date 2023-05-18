@@ -2,6 +2,7 @@
 {
     public class DatPhongResponse
     {
+        public int MaDatPhong { get; set; }
         public DateTime NgayDat { get; set; }
         public DateTime NgayNhan { get; set; }
         public DateTime NgayTra { get; set; }
