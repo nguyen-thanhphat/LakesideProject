@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
 
   TypeRoomArray: any[] = [];
   currentPage = 1;
-  itemsPerPage = 6;
+  itemsPerPage = 3;
   totalItems = 0;
 
   constructor(
