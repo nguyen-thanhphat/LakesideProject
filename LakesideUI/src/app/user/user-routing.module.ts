@@ -6,6 +6,8 @@ import { InfoBookingComponent } from './info-booking/info-booking.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SuccessComponent } from './success/success.component';
 import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
+import { InfoNewComponent } from './info-new/info-new.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, children: [
@@ -28,6 +30,14 @@ const routes: Routes = [
     {
       path:'loaiphong/:id',
       component: RoomdetailsComponent
+    },
+    {
+      path:'new',
+      component: InfoNewComponent
+    },
+    {
+      path:'feedback',
+      component: FeedbackComponent
     }
   ]}
 ];
