@@ -97,6 +97,7 @@ namespace LakesideAPI.Controllers
                 .Select(dp => new
                 {
                     TenPhong = dp.Phong != null ? dp.Phong.TenPhong : null,
+                    dp.MaDatphong,
                     dp.NgayDat,
                     dp.NgayNhan,
                     dp.NgayTra,
