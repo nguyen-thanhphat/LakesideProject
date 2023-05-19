@@ -11,6 +11,7 @@ import { BookingComponent } from './booking/booking.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { GrowthChartComponent } from './growth-chart/growth-chart.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     RoomComponent,
     ReceiptComponent,
     BookingComponent,
-    LoginComponent
+    LoginComponent,
+    GrowthChartComponent
   ],
   imports: [
     CommonModule,
