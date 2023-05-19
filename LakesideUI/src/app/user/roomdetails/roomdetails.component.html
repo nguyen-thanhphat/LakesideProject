@@ -1,0 +1,53 @@
+<div class="container d-flex flex-column">
+    <div class="card m-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{roomType.urlImage}}"
+                    class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">Bạn đang xem: {{roomType.tenLoaiPhong}}</h4>
+                    <hr>
+                    <div class="row">
+                        <form >
+                            <div style="height: 20px;"></div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="checkInDate" class="form-label">Check-in</label>
+                                    <input type="date" class="form-control" >
+                                    <!-- formControlName="checkIn" -->
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="checkOutDate" class="form-label">Check-out</label>
+                                    <input type="date" class="form-control" >
+                                    <!-- formControlName="checkOut" -->
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary">Đặt ngay</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="row">                        
+                        <div class="col-md-6">  
+                            <h4 class="card-text">Kiểu phòng: {{roomType.tenLoaiPhong}} </h4>  
+                            <p class="card-text">Nhìn ra: {{roomType.nhinRa}}</p>
+                            <p class="card-text">Giá ngày: {{roomType.giaPhong}} </p>
+                            <p class="card-text">Sức chứa: {{roomType.sucChua}}</p>
+                            <p class="card-text">Kích cỡ : {{roomType.kichCo}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="card-text">Tiện ích phòng</h6>     
+                            <ul>
+                                <li *ngFor="let tienIch of roomType.tienIch.split('\r\n')">{{ tienIch }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -16,6 +16,9 @@ export class MainComponent implements OnInit {
   searchForm!: FormGroup;
 
   TypeRoomArray: any[] = [];
+  currentPage = 1;
+  itemsPerPage = 6;
+  totalItems = 0;
 
   constructor(
     private searchService: SearchRoomService,
@@ -70,11 +73,51 @@ export class MainComponent implements OnInit {
     const diff = new Date(checkOut).getTime() - new Date(checkIn).getTime();
     return diff / (1000 * 60 * 60 * 24);
   }
+
   getListType(){
     this.typeService.getList().subscribe((resultData:any) => {
       console.log(resultData);
       this.TypeRoomArray = resultData;
+      this.totalItems = this.TypeRoomArray.length;
     })
   }
+
+  //#region pagination
+
+  get pagedItems() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.TypeRoomArray.slice(startIndex, endIndex);
+  }
   
+  get totalPages() {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+  
+  goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+  
+  goToNextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }  
+
+  get totalPagesArray() {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+  //#endregion
+  
+  viewRoomTypeDetail(id: string) {
+    this.router.navigate(['/loaiphong', id]);
+  }
 }

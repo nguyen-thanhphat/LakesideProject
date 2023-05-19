@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoBookingComponent } from './info-booking/info-booking.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SuccessComponent } from './success/success.component';
+import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SuccessComponent } from './success/success.component';
     IntroduceComponent,
     InfoBookingComponent,
     CheckOutComponent,
-    SuccessComponent
+    SuccessComponent,
+    RoomdetailsComponent
   ],
   imports: [
     CommonModule,

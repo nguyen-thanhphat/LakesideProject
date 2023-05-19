@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { InfoBookingComponent } from './info-booking/info-booking.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SuccessComponent } from './success/success.component';
+import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, children: [
@@ -23,6 +24,10 @@ const routes: Routes = [
     {
       path:'success',
       component: SuccessComponent
+    },
+    {
+      path:'loaiphong/:id',
+      component: RoomdetailsComponent
     }
   ]}
 ];
