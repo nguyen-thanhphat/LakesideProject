@@ -81,6 +81,30 @@ namespace LakesideAPI.Controllers
             return Ok(danhSachPhongItDat);
         }
 
+        [HttpGet("revenue-by-month")]
+        public IActionResult GetRevenueByMonth()
+        {
+            var currentDate = DateTime.Now;
+            var labels = new List<string>();
+            var values = new List<float>();
+
+            for (int i = 1; i <= 12; i++)
+            {
+                var startDate = new DateTime(currentDate.Year, i, 1);
+                var endDate = startDate.AddMonths(1).AddDays(-1);
+
+                var revenue = _context.HoaDon
+                    .Where(hd => hd.NgayDen >= startDate && hd.NgayDi <= endDate)
+                    .Sum(hd => hd.TongTien);
+
+                labels.Add($"Tháng {i}");
+                values.Add(revenue);
+            }
+
+            var data = new { labels, values };
+
+            return Ok(data);
+        }
 
     }
 }
