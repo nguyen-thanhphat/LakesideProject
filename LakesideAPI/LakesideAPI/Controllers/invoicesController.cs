@@ -58,7 +58,7 @@ namespace LakesideAPI.Controllers
         [HttpGet("getlist")]
         public IActionResult GetHoaDons()
         {
-            var hoaDons = _context.HoaDon.ToList();
+            var hoaDons = _context.HoaDon.OrderByDescending(h => h.MaHoaDon).ToList();
             return Ok(hoaDons);
         }
 

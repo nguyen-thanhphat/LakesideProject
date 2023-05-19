@@ -10,6 +10,10 @@ import { environment } from 'src/environment/environment';
 export class BookingComponent {
   bookingList: any[] = [];
 
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalItems: number = 0;
+  totalPages: number = 0;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -35,4 +39,23 @@ export class BookingComponent {
     }
   }
   
+  // getPagesArray(): number[] {
+  //   const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+  //   return Array(totalPages).fill(0).map((_, index) => index + 1);
+  // }
+
+  getPagesArray(): number[] {
+     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    return Array(this.totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
+  getPaginatedData(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.bookingList.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
 }
