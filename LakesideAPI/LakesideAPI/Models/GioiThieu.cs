@@ -8,5 +8,6 @@ namespace LakesideAPI.Models
         public int MaGioiThieu { get; set; }
         public string? TieuDe { get; set; }
         public string? NoiDung { get; set; }
+        public string? urlImage { get; set; }
     }
 }
