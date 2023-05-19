@@ -14,6 +14,13 @@ export class BookingComponent {
   itemsPerPage: number = 10;
   totalItems: number = 0;
   totalPages: number = 0;
+
+  currentBookingID = '';
+  trangThai = '';
+  ngayDat = '';
+  tenKhachHang = '';
+  soDienThoai = '';
+  isUpdateFormActive = false;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -25,6 +32,32 @@ export class BookingComponent {
       this.bookingList = resData;
       console.log(this.bookingList);
     } )
+  }
+
+  setUpdate(data:any) {
+    this.trangThai = data.trangThai;
+    this.ngayDat = data.ngayDat;
+    this.tenKhachHang = data.tenKhachHang;
+    this.soDienThoai = data.soDienThoai;
+    this.currentBookingID = data.maDatphong;
+    this.isUpdateFormActive = true;
+  }
+
+  updateState(){
+    const bodyData = {
+      trangThai: this.trangThai
+    };
+    this.http.put(`${environment.apiUrl}manage/edit-state/` + this.currentBookingID, bodyData, { responseType: 'text' })
+      .subscribe((resData: any) => {
+        console.log(resData);
+        alert('Cập nhật trạng thái thành công');
+        this.getListBooking();
+        this.isUpdateFormActive = false;
+      })
+  }
+
+  save(){
+    this.updateState();
   }
 
   getTrangThaiColor(trangThai: string): string {

@@ -11,7 +11,50 @@
     </button>
   </div>
 </div>
+<div class="container mt-4">
+  <div class="accordion" id="accordionTypeRoom">
+      <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  Quản lý đặt phòng
+              </button>
+          </h2>
 
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample" [ngClass]="{'show': isUpdateFormActive}">
+              <div class="accordion-body">
+                  <form>
+                      <div class="row mb-3">
+                          <div class="col-md-4">
+                              <label for="input4" class="form-label">Khách hàng</label>
+                              <input type="text" [(ngModel)]="tenKhachHang" [ngModelOptions]="{standalone: true}" class="form-control" id="tenKhachHang" [readonly]="true">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="input4" class="form-label">Ngày đặt</label>
+                            <input type="text" [(ngModel)]="ngayDat" [ngModelOptions]="{standalone: true}" class="form-control" id="ngayDat" [readonly]="true">
+                        </div>
+                          <div class="col-md-4">
+                              <label for="input5" class="form-label">Trạng thái</label>
+                              <select class="form-control" id="trangThai" name="trangThai" [(ngModel)]="trangThai" [ngModelOptions]="{standalone: true}">
+                                <option>Đã đặt</option>
+                                <option>Đã thanh toán</option>
+                                <option>Đã huỷ</option>
+                              </select>
+                          </div>                            
+                      </div>
+                      <div class="btn-group me-2">
+                          <button type="submit" class="btn btn-primary mt-4" (click)="save()" >{{ isUpdateFormActive ?
+                            'Cập nhật' : 'Tạo mới' }}</button>
+                            
+                          <!-- <button type="button" class="btn btn-secondary mt-4" (click)="resetForm()">Reset</button> -->
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -36,8 +79,12 @@
       <td [style.color]="getTrangThaiColor(bookingItem.trangThai)">{{bookingItem.trangThai}}</td>
       <td>
         <div class="btn-group me-2">
-          <button class="btn btn-sm btn-outline-secondary">Quản lý</button>
-          <button class="btn btn-sm btn-outline-secondary">Xem</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"
+          (click)="setUpdate(bookingItem)"
+          data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true"
+          >Quản lý</button>
+          <button class="btn btn-sm btn-outline-secondary" disabled>Xem</button>
         </div>
       </td>
     </tr>
