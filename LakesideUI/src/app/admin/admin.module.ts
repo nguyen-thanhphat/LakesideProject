@@ -10,6 +10,7 @@ import { ReceiptComponent } from './receipt/receipt.component';
 import { BookingComponent } from './booking/booking.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoaiphongComponent,
     RoomComponent,
     ReceiptComponent,
-    BookingComponent
+    BookingComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
