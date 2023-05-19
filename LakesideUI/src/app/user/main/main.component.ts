@@ -24,8 +24,7 @@ export class MainComponent implements OnInit {
     private searchService: SearchRoomService,
     private typeService: RoomTypeService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {
     this.getListType();
   }

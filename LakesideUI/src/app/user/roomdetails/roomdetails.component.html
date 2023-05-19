@@ -10,18 +10,16 @@
                     <h4 class="card-title">Bạn đang xem: {{roomType.tenLoaiPhong}}</h4>
                     <hr>
                     <div class="row">
-                        <form >
+                        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" >
                             <div style="height: 20px;"></div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="checkInDate" class="form-label">Check-in</label>
-                                    <input type="date" class="form-control" >
-                                    <!-- formControlName="checkIn" -->
+                                    <input type="date" class="form-control" formControlName="checkIn" >
                                 </div>
                                 <div class="col-md-3">
                                     <label for="checkOutDate" class="form-label">Check-out</label>
-                                    <input type="date" class="form-control" >
-                                    <!-- formControlName="checkOut" -->
+                                    <input type="date" class="form-control" formControlName="checkOut" >
                                 </div>
                                 <div class="col-md-2 d-flex align-items-end">
                                     <button type="submit" class="btn btn-primary">Đặt ngay</button>
