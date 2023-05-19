@@ -12,6 +12,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { GrowthChartComponent } from './growth-chart/growth-chart.component';
+import { RevenueInRangeComponent } from './stats/revenue-in-range/revenue-in-range.component';
+import { RevenueInMonthComponent } from './stats/revenue-in-month/revenue-in-month.component';
+import { LowDemandRoomComponent } from './stats/low-demand-room/low-demand-room.component';
+import { LowDemandRoomMonthComponent } from './stats/low-demand-room-month/low-demand-room-month.component';
+import { PaidComponent } from './booking/paid/paid.component';
+import { BookedComponent } from './booking/booked/booked.component';
+import { CanceledComponent } from './booking/canceled/canceled.component';
+import { RefusedComponent } from './booking/refused/refused.component';
 
 
 @NgModule({
@@ -23,7 +31,15 @@ import { GrowthChartComponent } from './growth-chart/growth-chart.component';
     ReceiptComponent,
     BookingComponent,
     LoginComponent,
-    GrowthChartComponent
+    GrowthChartComponent,
+    RevenueInRangeComponent,
+    RevenueInMonthComponent,
+    LowDemandRoomComponent,
+    LowDemandRoomMonthComponent,
+    PaidComponent,
+    BookedComponent,
+    CanceledComponent,
+    RefusedComponent
   ],
   imports: [
     CommonModule,

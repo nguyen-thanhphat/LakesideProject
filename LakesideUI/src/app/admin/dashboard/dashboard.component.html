@@ -138,21 +138,24 @@
                     <li class="mb-1">
                         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                             data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                            <h6>Quản lý hoá đơn</h6>
+                            <h6>Quản lý tiện ích</h6>
                         </button>
                         <div class="collapse" id="orders-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a>
+                                <li><a [routerLink]="['']"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                                    Phương thức thanh toán
+                                    </a>
                                 </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
+                                <li><a [routerLink]="['']"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                                    Tin tức
+                                    </a>
                                 </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
+                                <li><a [routerLink]="['']"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                                    Phản hồi
+                                    </a>
                                 </li>
                             </ul>
                         </div>

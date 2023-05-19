@@ -6,6 +6,14 @@ import { RoomComponent } from './room/room.component';
 import { LoaiphongComponent } from './loaiphong/loaiphong.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { BookingComponent } from './booking/booking.component';
+import { LowDemandRoomComponent } from './stats/low-demand-room/low-demand-room.component';
+import { RevenueInRangeComponent } from './stats/revenue-in-range/revenue-in-range.component';
+import { RevenueInMonthComponent } from './stats/revenue-in-month/revenue-in-month.component';
+import { LowDemandRoomMonthComponent } from './stats/low-demand-room-month/low-demand-room-month.component';
+import { BookedComponent } from './booking/booked/booked.component';
+import { CanceledComponent } from './booking/canceled/canceled.component';
+import { PaidComponent } from './booking/paid/paid.component';
+import { RefusedComponent } from './booking/refused/refused.component';
 
 const routes: Routes = [
   {
@@ -31,6 +39,38 @@ const routes: Routes = [
       {
         path:'booking',
         component: BookingComponent
+      },
+      {
+        path:'stats/revenue-in-range',
+        component: RevenueInRangeComponent
+      },
+      {
+        path:'stats/revenue-in-month',
+        component: RevenueInMonthComponent
+      },
+      {
+        path:'stats/low-demand-room',
+        component: LowDemandRoomComponent
+      },
+      {
+        path:'stats/low-demand-room-month',
+        component: LowDemandRoomMonthComponent
+      },
+      {
+        path:'booking/booked',
+        component:BookedComponent
+      },
+      {
+        path:'booking/canceled',
+        component:CanceledComponent
+      },
+      {
+        path:'booking/paid',
+        component:PaidComponent
+      },
+      {
+        path:'booking/refused',
+        component:RefusedComponent
       }
     ]}
   ];
