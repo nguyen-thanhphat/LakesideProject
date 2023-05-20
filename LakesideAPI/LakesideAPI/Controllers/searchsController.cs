@@ -35,7 +35,7 @@ namespace LakesideAPI.Controllers
                 .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
                               (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
                               (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
-                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
                 .Select(dp => dp.MaPhong)
                 .ToList();
 
