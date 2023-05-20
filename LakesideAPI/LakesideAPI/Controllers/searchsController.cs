@@ -1,4 +1,5 @@
 ﻿using LakesideAPI.Helpers;
+using LakesideAPI.Models;
 using LakesideAPI.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -73,5 +74,81 @@ namespace LakesideAPI.Controllers
 
             return loaiPhongDTO;
         }
+
+        [HttpGet("listroom-by/{ngayNhan}/{ngayTra}/{maLoaiPhong}")]
+        public async Task<ActionResult<List<SearchPhong>>> GetListPhongTrong(DateTime ngayNhan, DateTime ngayTra, int maLoaiPhong)
+        {
+            var maPhongDaDat = _context.DatPhong
+                .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
+                              (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                .Select(dp => dp.MaPhong)
+                .ToList();
+
+            var danhSachPhongTrong = await _context.Phong
+                .Include(p => p.LoaiPhong)
+                .Where(p => !maPhongDaDat.Contains(p.MaPhong) && p.MaLoaiPhong == maLoaiPhong)
+                .Select(p => new SearchPhong
+                {
+                    MaPhong = p.MaPhong,
+                    TenPhong = p.TenPhong,
+                    TenLoaiPhong = p.LoaiPhong.TenLoaiPhong,
+                    TienIch = p.LoaiPhong.TienIch,
+                    KichCo = p.LoaiPhong.KichCo,
+                    GiaPhong = p.LoaiPhong.GiaPhong,
+                    UrlImage = p.LoaiPhong.UrlImage,
+                    NhinRa = p.LoaiPhong.NhinRa,
+                    SucChua = p.LoaiPhong.SucChua,
+                    PhuThu = p.LoaiPhong.PhuThu
+                })
+                .ToListAsync();
+
+            if (danhSachPhongTrong.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return danhSachPhongTrong;
+        }
+
+
+        [HttpGet("count-available-rooms/{ngayNhan}/{ngayTra}/{maLoaiPhong}")]
+        public async Task<ActionResult<int>> CountPhongTrong(DateTime ngayNhan, DateTime ngayTra, int maLoaiPhong)
+        {
+            // Lấy danh sách các mã phòng đã có trong đặt phòng trong khoảng thời gian và có trạng thái là "Đã huỷ" (nếu có)
+            var maPhongDaDat = await _context.DatPhong
+                .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
+                              (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                .Select(dp => dp.MaPhong)
+                .ToListAsync();
+
+            var countPhongTrong = await _context.Phong
+                .Where(p => !maPhongDaDat.Contains(p.MaPhong) && p.MaLoaiPhong == maLoaiPhong)
+                .CountAsync();
+
+            return countPhongTrong;
+        }
+
+        [HttpGet("available-rooms/{ngayNhan}/{ngayTra}")]
+        public async Task<ActionResult<List<Phong>>> GetPhongChuaDat(DateTime ngayNhan, DateTime ngayTra)
+        {
+            var maPhongDaDat = await _context.DatPhong
+                .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
+                              (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                .Select(dp => dp.MaPhong)
+                .ToListAsync();
+
+            var phongChuaDat = await _context.Phong
+                .Where(p => !maPhongDaDat.Contains(p.MaPhong))
+                .ToListAsync();
+
+            return phongChuaDat;
+        }
+
     }
 }

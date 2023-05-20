@@ -20,6 +20,8 @@ import { PaidComponent } from './booking/paid/paid.component';
 import { BookedComponent } from './booking/booked/booked.component';
 import { CanceledComponent } from './booking/canceled/canceled.component';
 import { RefusedComponent } from './booking/refused/refused.component';
+import { AvailableRoomsComponent } from './room/available-rooms/available-rooms.component';
+import { AvailableByTypeComponent } from './room/available-by-type/available-by-type.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { RefusedComponent } from './booking/refused/refused.component';
     PaidComponent,
     BookedComponent,
     CanceledComponent,
-    RefusedComponent
+    RefusedComponent,
+    AvailableRoomsComponent,
+    AvailableByTypeComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,31 @@
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 150px);
+    grid-gap: 10px;
+  }
+  
+  .card {
+    width: 150px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    width: 100%;
+  }
+  
+  .form-group input[type="text"],
+  .form-group select {
+    width: 100%;
+  }
+  

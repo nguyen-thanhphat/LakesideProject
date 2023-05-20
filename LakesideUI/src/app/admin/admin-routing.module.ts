@@ -14,6 +14,8 @@ import { BookedComponent } from './booking/booked/booked.component';
 import { CanceledComponent } from './booking/canceled/canceled.component';
 import { PaidComponent } from './booking/paid/paid.component';
 import { RefusedComponent } from './booking/refused/refused.component';
+import { AvailableRoomsComponent } from './room/available-rooms/available-rooms.component';
+import { AvailableByTypeComponent } from './room/available-by-type/available-by-type.component';
 
 const routes: Routes = [
   {
@@ -71,6 +73,14 @@ const routes: Routes = [
       {
         path:'booking/refused',
         component:RefusedComponent
+      },
+      {
+        path:'room/available-rooms',
+        component: AvailableRoomsComponent
+      },
+      {
+        path:'room/available-by-type',
+        component: AvailableByTypeComponent
       }
     ]}
   ];

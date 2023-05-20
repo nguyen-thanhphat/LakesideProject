@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Kiểm tra phòng chưa đặt</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<form (submit)="getAvailableRoom()">
+    <div class="row">
+        <div class="col-md-3">
+            <label class="form-label" for="startDate">Ngày bắt đầu</label>
+            <input class="form-control" type="date" [(ngModel)]="checkIn" name="checkIn" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label" for="startDate">Ngày kết thúc</label>
+            <input class="form-control" type="date" [(ngModel)]="checkOut" name="checkOut" required>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit"  class="btn btn-primary">Tìm ngày</button>
+        </div> 
+    </div>
+</form>
+<br><hr>
+<div class="card-list">
+    <div *ngFor="let RoomItem of roomResults"  class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{RoomItem.tenPhong}}</h5>
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                
+                data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true"
+                >Sửa</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary disabled">Xoá</button>
+            </div>
+        </div>
+    </div>
+</div>

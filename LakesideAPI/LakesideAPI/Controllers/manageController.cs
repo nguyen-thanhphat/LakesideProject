@@ -40,6 +40,7 @@ namespace LakesideAPI.Controllers
         {
             var datPhongs = _context.DatPhong
                 .Where(dp => dp.TrangThai == trangThai)
+                .OrderByDescending(dp => dp.MaDatphong) // Sắp xếp theo ID giảm dần
                 .ToList();
 
             if (datPhongs.Count == 0)
