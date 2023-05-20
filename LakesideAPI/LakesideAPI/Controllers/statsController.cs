@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace LakesideAPI.Controllers
 {
@@ -28,10 +29,25 @@ namespace LakesideAPI.Controllers
             return Ok(tongTien);
         }
 
-        [HttpGet("revenue-in-month/{month}/{year}")]
-        public IActionResult TinhTongTienTrongThang(int month, int year)
+        //[HttpGet("revenue-in-month/{month}/{year}")]
+        //public IActionResult TinhTongTienTrongThang(int month, int year)
+        //{
+        //    DateTime fromDate = new DateTime(year, month, 1);
+        //    DateTime toDate = fromDate.AddMonths(1).AddDays(-1);
+
+        //    var hoaDons = _context.HoaDon
+        //        .Where(h => h.NgayDen >= fromDate && h.NgayDi <= toDate)
+        //        .ToList();
+
+        //    float tongTien = hoaDons.Sum(h => h.TongTien);
+
+        //    return Ok(tongTien);
+        //}
+
+        [HttpGet("revenue-in-month/{dateString}")]
+        public IActionResult TinhTongTienTrongThang(string dateString)
         {
-            DateTime fromDate = new DateTime(year, month, 1);
+            DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM", CultureInfo.InvariantCulture);
             DateTime toDate = fromDate.AddMonths(1).AddDays(-1);
 
             var hoaDons = _context.HoaDon

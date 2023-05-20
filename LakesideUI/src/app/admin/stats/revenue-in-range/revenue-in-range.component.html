@@ -1,1 +1,35 @@
-<p>revenue-in-range works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Thống kê doanh thu theo khoảng</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button>
+    </div>
+</div>
+<br>
+
+<form (submit)="getList()">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="startDate">Ngày bắt đầu:</label>
+            <input class="form-control" type="date" [(ngModel)]="startDate" name="startDate" required>
+        </div>
+        <div class="col-md-3">
+            <label for="endDate">Ngày kết thúc:</label>
+            <input class="form-control" type="date" [(ngModel)]="endDate" name="endDate" required>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit"  class="btn btn-primary">Tính doanh thu</button>
+        </div>
+        
+    </div>
+</form>
+<br>
+<hr>
+<h2>Từ {{startDate}} đến {{endDate}}</h2>
+<h1>Doanh thu: {{value | currency:'VND' }}</h1>
