@@ -1,1 +1,106 @@
-<p>refused works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Danh sách đặt phòng</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        <span data-feather="calendar" class="align-text-bottom"></span>
+        This week
+      </button>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div class="accordion" id="accordionTypeRoom">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Quản lý đặt phòng
+                </button>
+            </h2>
+  
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample" [ngClass]="{'show': isUpdateFormActive}">
+                <div class="accordion-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="input4" class="form-label">Khách hàng</label>
+                                <input type="text" [(ngModel)]="tenKhachHang" [ngModelOptions]="{standalone: true}" class="form-control" id="tenKhachHang" [readonly]="true">
+                            </div>
+                            <div class="col-md-4">
+                              <label for="input4" class="form-label">Ngày đặt</label>
+                              <input type="text" [(ngModel)]="ngayDat" [ngModelOptions]="{standalone: true}" class="form-control" id="ngayDat" [readonly]="true">
+                          </div>
+                            <div class="col-md-4">
+                                <label for="input5" class="form-label">Trạng thái</label>
+                                <select class="form-control" id="trangThai" name="trangThai" [(ngModel)]="trangThai" [ngModelOptions]="{standalone: true}">
+                                  <option>Đã đặt</option>
+                                  <option>Đã thanh toán</option>
+                                  <option>Đã huỷ</option>
+                                  <option>Đã từ chối</option>
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="btn-group me-2">
+                            <button type="submit" class="btn btn-primary mt-4" (click)="save()" >{{ isUpdateFormActive ?
+                              'Cập nhật' : 'Tạo mới' }}</button>
+                              
+                            <!-- <button type="button" class="btn btn-secondary mt-4" (click)="resetForm()">Reset</button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Số phòng</th>
+        <th scope="col">Khách hàng</th>
+        <th scope="col">Ngày đặt</th>
+        <th scope="col">CheckIn</th>
+        <th scope="col">CheckOut</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Chức năng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bookingItem of getPaginatedData()">
+        <!-- <th scope="row">1</th> -->
+        <td>Phòng {{bookingItem.maPhong}}</td>
+        <td>{{bookingItem.tenKhachHang}}</td>
+        <td>{{bookingItem.ngayDat | date:'yyyy-MM-dd'}}</td>
+        <td>{{bookingItem.ngayNhan | date:'yyyy-MM-dd'}}</td>
+        <td>{{bookingItem.ngayTra | date:'yyyy-MM-dd'}}</td>
+        <!-- <td>{{bookingItem.trangThai}}</td> -->
+        <td [style.color]="getTrangThaiColor(bookingItem.trangThai)">{{bookingItem.trangThai}}</td>
+        <td>
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary"
+            (click)="setUpdate(bookingItem)"
+            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true"
+            >Quản lý</button>
+            <button class="btn btn-sm btn-outline-secondary" disabled>Xem</button>
+          </div>
+        </td>
+      </tr>
+  
+    </tbody>
+  </table>
+  
+  <ul class="pagination justify-content-end">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let page of getPagesArray()" [class.active]="currentPage === page">
+      <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+    </li>
+  </ul>
