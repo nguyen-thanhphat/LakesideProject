@@ -183,7 +183,7 @@
                                 <li><a routerLink="/accounts"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Quản lý</a>
                                 </li>
-                                <li><a [routerLink]="['/']"
+                                <li><a (click)="logout()"
                                         class="link-dark d-inline-flex text-decoration-none rounded">Sign
                                         out</a></li>
                             </ul>

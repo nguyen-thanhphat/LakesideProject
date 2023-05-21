@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './admin/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const userModule = () => import('./user/user.module').then(x => x.UserModule);
 const adminModule = () => import('./admin/admin.module').then(a => a.AdminModule);
 
 const routes: Routes = [
   { path: '', loadChildren: userModule},
-  { path: 'dashboard', loadChildren: adminModule},
+  { path: 'dashboard', loadChildren: adminModule, canActivate: [AuthGuard]},
   {
     path:'login',
     component: LoginComponent
