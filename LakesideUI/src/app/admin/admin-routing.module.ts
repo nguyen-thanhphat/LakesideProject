@@ -16,6 +16,7 @@ import { PaidComponent } from './booking/paid/paid.component';
 import { RefusedComponent } from './booking/refused/refused.component';
 import { AvailableRoomsComponent } from './room/available-rooms/available-rooms.component';
 import { AvailableByTypeComponent } from './room/available-by-type/available-by-type.component';
+import { TypeRoomComponent } from './type-room/type-room.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
       },
       {
         path:'type-room',
-        component: LoaiphongComponent
+        component: TypeRoomComponent
       },
       {
         path:'receipt',

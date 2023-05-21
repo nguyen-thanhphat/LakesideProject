@@ -22,6 +22,7 @@ import { CanceledComponent } from './booking/canceled/canceled.component';
 import { RefusedComponent } from './booking/refused/refused.component';
 import { AvailableRoomsComponent } from './room/available-rooms/available-rooms.component';
 import { AvailableByTypeComponent } from './room/available-by-type/available-by-type.component';
+import { TypeRoomComponent } from './type-room/type-room.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AvailableByTypeComponent } from './room/available-by-type/available-by-
     CanceledComponent,
     RefusedComponent,
     AvailableRoomsComponent,
-    AvailableByTypeComponent
+    AvailableByTypeComponent,
+    TypeRoomComponent
   ],
   imports: [
     CommonModule,
