@@ -2,7 +2,10 @@
     <div class="card m-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="https://cdn.vietnammoi.vn/1881912202022777/images/anh-phong-ngu-chill-1-20220518180445531.jpg?width=700"
+                <img 
+                *ngIf="searchResult.urlImage" 
+                        [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(searchResult.urlImage)"
+
                     class="card-img" alt="...">
             </div>
             <div class="col-md-8">

@@ -119,4 +119,9 @@ export class MainComponent implements OnInit {
   viewRoomTypeDetail(id: string) {
     this.router.navigate(['/loaiphong', id]);
   }
+
+  getFileNameFromUrl(url: string): string {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  }
 }
