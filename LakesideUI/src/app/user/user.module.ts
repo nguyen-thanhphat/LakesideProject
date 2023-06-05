@@ -12,6 +12,7 @@ import { InfoBookingComponent } from './info-booking/info-booking.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SuccessComponent } from './success/success.component';
 import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
     InfoBookingComponent,
     CheckOutComponent,
     SuccessComponent,
-    RoomdetailsComponent
+    RoomdetailsComponent,
+    SearchFilterComponent
   ],
   imports: [
     CommonModule,
