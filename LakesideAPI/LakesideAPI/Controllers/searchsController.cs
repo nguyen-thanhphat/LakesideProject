@@ -149,5 +149,82 @@ namespace LakesideAPI.Controllers
 
             return phongChuaDat;
         }
+
+        [HttpGet("reservations/{phoneNumber}")]
+        public IActionResult GetByPhoneNumber(string phoneNumber)
+        {
+            // Kiểm tra số điện thoại không rỗng
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                return BadRequest("Số điện thoại không hợp lệ.");
+            }
+
+            // Tìm kiếm đặt phòng theo số điện thoại
+            var datPhongList = _context.DatPhong.Where(dp => dp.SoDienThoai == phoneNumber).ToList();
+
+            return Ok(datPhongList);
+        }
+
+        [HttpGet("filter/{ngayNhan}/{ngayTra}")]
+        public async Task<ActionResult<List<SearchPhong>>> GetPhongTrong(DateTime ngayNhan, DateTime ngayTra, [FromQuery] int? sucChua, [FromQuery] int? maLoaiPhong, [FromQuery] string? tienNghi, [FromQuery] float? mucGia, [FromQuery] string? nhinRa = null)
+        {
+            var query = _context.Phong.Include(p => p.LoaiPhong).AsQueryable();
+
+            // Lấy danh sách các mã phòng đã có trong đặt phòng trong khoảng thời gian và có trạng thái là "Đã huỷ" hoặc "Đã từ chối"
+            var maPhongDaDat = _context.DatPhong
+                .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
+                              (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) ||
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
+                .Select(dp => dp.MaPhong)
+                .ToList();
+
+            // Áp dụng bộ lọc cho các tham số tìm kiếm
+            if (sucChua.HasValue)
+            {
+                query = query.Where(p => p.LoaiPhong.SucChua == sucChua.Value);
+            }
+
+            if (maLoaiPhong.HasValue)
+            {
+                query = query.Where(p => p.MaLoaiPhong == maLoaiPhong.Value);
+            }
+
+            if (!string.IsNullOrEmpty(tienNghi))
+            {
+                query = query.Where(p => p.LoaiPhong.TienIch.Contains(tienNghi));
+            }
+
+            if (mucGia.HasValue)
+            {
+                query = query.Where(p => p.LoaiPhong.GiaPhong <= mucGia.Value);
+            }
+
+            if (!string.IsNullOrEmpty(nhinRa))
+            {
+                query = query.Where(p => p.LoaiPhong.NhinRa.Contains(nhinRa));
+            }
+            // Lấy danh sách các phòng trống theo các bộ lọc đã áp dụng
+            var phongTrong = query
+                .Where(p => !maPhongDaDat.Contains(p.MaPhong))
+                .Select(p => new SearchPhong
+                {
+                    MaPhong = p.MaPhong,
+                    TenPhong = p.TenPhong,
+                    TenLoaiPhong = p.LoaiPhong.TenLoaiPhong,
+                    TienIch = p.LoaiPhong.TienIch,
+                    KichCo = p.LoaiPhong.KichCo,
+                    GiaPhong = p.LoaiPhong.GiaPhong,
+                    UrlImage = p.LoaiPhong.UrlImage,
+                    NhinRa = p.LoaiPhong.NhinRa,
+                    SucChua = p.LoaiPhong.SucChua,
+                    PhuThu = p.LoaiPhong.PhuThu
+                })
+                .ToList();
+
+            return phongTrong;
+        }
+
+
     }
 }
