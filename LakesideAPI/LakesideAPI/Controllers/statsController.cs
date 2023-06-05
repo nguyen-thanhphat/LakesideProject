@@ -1,6 +1,7 @@
 ﻿using LakesideAPI.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -29,21 +30,6 @@ namespace LakesideAPI.Controllers
             return Ok(tongTien);
         }
 
-        //[HttpGet("revenue-in-month/{month}/{year}")]
-        //public IActionResult TinhTongTienTrongThang(int month, int year)
-        //{
-        //    DateTime fromDate = new DateTime(year, month, 1);
-        //    DateTime toDate = fromDate.AddMonths(1).AddDays(-1);
-
-        //    var hoaDons = _context.HoaDon
-        //        .Where(h => h.NgayDen >= fromDate && h.NgayDi <= toDate)
-        //        .ToList();
-
-        //    float tongTien = hoaDons.Sum(h => h.TongTien);
-
-        //    return Ok(tongTien);
-        //}
-
         [HttpGet("revenue-in-month/{dateString}")]
         public IActionResult TinhTongTienTrongThang(string dateString)
         {
@@ -58,6 +44,29 @@ namespace LakesideAPI.Controllers
 
             return Ok(tongTien);
         }
+
+        [HttpGet("revenue-by-room/{dateString}")]
+        public IActionResult TinhDoanhThuTheoPhongTrongThang(string dateString)
+        {
+            DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM", CultureInfo.InvariantCulture);
+            DateTime toDate = fromDate.AddMonths(1).AddDays(-1);
+
+            var hoaDons = _context.HoaDon
+                .Where(h => h.NgayDen >= fromDate && h.NgayDi <= toDate)
+                .GroupBy(h => h.TenPhong)
+                .Select(g => new
+                {
+                    Phong = g.Key,
+                    SoLanDat = g.Count(),
+                    DoanhThu = g.Sum(h => h.TongTien)
+                })
+                .OrderByDescending(h => h.SoLanDat) // Sắp xếp theo số lần đặt giảm dần
+                .ToList();
+
+            return Ok(hoaDons);
+        }
+
+
 
         [HttpGet("low-demand-room/{formDate}/{toDate}/{minimum}")]
         public IActionResult ThongKePhongItDat(DateTime formDate, DateTime toDate, int minimum)

@@ -61,7 +61,7 @@ export class TypeRoomComponent implements OnInit {
         (resData) => {
           console.log(resData);
           alert('Thêm loại phòng thành công!');
-          this.uploadImage(resData.maLoaiPhong);
+          //this.uploadImage(resData.maLoaiPhong);
           this.getRoomTypes();
           this.resetForm();
         },
@@ -104,7 +104,7 @@ export class TypeRoomComponent implements OnInit {
       )
       .subscribe((resData) => {
         console.log(resData);
-        alert('Cập nhật loại phòng thành công!');
+        //alert('Cập nhật loại phòng thành công!');
         this.uploadImage(this.currentTypeID);
         this.getRoomTypes();
         this.resetForm();

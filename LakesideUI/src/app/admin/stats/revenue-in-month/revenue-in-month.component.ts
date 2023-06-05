@@ -8,7 +8,8 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./revenue-in-month.component.css']
 })
 export class RevenueInMonthComponent {
-  revenue: number = 0;
+  revenue: any[] = [];
+  sumRevenue: number = 0;
   month: string = '';
 
   constructor(private http: HttpClient) {}
@@ -18,9 +19,15 @@ export class RevenueInMonthComponent {
   }
 
   getRevenueInMonth(){
-    this.http.get(`${environment.apiUrl}stats/revenue-in-month/${this.month}`)
+    this.http.get(`${environment.apiUrl}stats/revenue-by-room/${this.month}`)
       .subscribe((resData:any) => {
         this.revenue = resData;
-      })
+        console.log(this.revenue)
+      });
+      this.http.get(`${environment.apiUrl}stats/revenue-in-month/${this.month}`)
+      .subscribe((resData:any) => {
+        this.sumRevenue = resData;
+        console.log(this.sumRevenue)
+      });
   }
 }

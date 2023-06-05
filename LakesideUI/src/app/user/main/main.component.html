@@ -11,11 +11,11 @@
                 <label for="checkOutDate" class="form-label">Check-out</label>
                 <input type="date" class="form-control" formControlName="checkOut">
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <label for="number1" class="form-label">Số người</label>
                 <input type="number" class="form-control" id="number1" min="1" max="8" name="so1">
-            </div>
-            <div class="col-md-2">
+            </div> -->
+            <div class="col-md-4">
                 <label for="number2" class="form-label">Loại phòng</label>
                 <select class="form-select" formControlName="maLoai" >
                     <option *ngFor="let RoomItem of TypeRoomArray" [value]="RoomItem.maLoaiPhong">{{RoomItem.tenLoaiPhong}}</option>

@@ -34,7 +34,7 @@ namespace LakesideAPI.Controllers
             var maPhongDaDat = _context.DatPhong
                 .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
                               (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
-                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) ||
                               (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
                 .Select(dp => dp.MaPhong)
                 .ToList();
@@ -81,8 +81,8 @@ namespace LakesideAPI.Controllers
             var maPhongDaDat = _context.DatPhong
                 .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
                               (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
-                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
-                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) ||
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
                 .Select(dp => dp.MaPhong)
                 .ToList();
 
@@ -117,13 +117,13 @@ namespace LakesideAPI.Controllers
         public async Task<ActionResult<int>> CountPhongTrong(DateTime ngayNhan, DateTime ngayTra, int maLoaiPhong)
         {
             // Lấy danh sách các mã phòng đã có trong đặt phòng trong khoảng thời gian và có trạng thái là "Đã huỷ" (nếu có)
-            var maPhongDaDat = await _context.DatPhong
+            var maPhongDaDat = _context.DatPhong
                 .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
                               (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
-                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
-                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) ||
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
                 .Select(dp => dp.MaPhong)
-                .ToListAsync();
+                .ToList();
 
             var countPhongTrong = await _context.Phong
                 .Where(p => !maPhongDaDat.Contains(p.MaPhong) && p.MaLoaiPhong == maLoaiPhong)
@@ -135,13 +135,13 @@ namespace LakesideAPI.Controllers
         [HttpGet("available-rooms/{ngayNhan}/{ngayTra}")]
         public async Task<ActionResult<List<Phong>>> GetPhongChuaDat(DateTime ngayNhan, DateTime ngayTra)
         {
-            var maPhongDaDat = await _context.DatPhong
+            var maPhongDaDat = _context.DatPhong
                 .Where(dp => ((dp.NgayNhan >= ngayNhan && dp.NgayNhan <= ngayTra) ||
                               (dp.NgayTra >= ngayNhan && dp.NgayTra <= ngayTra) ||
-                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) &&
-                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == null))
+                              (dp.NgayNhan <= ngayNhan && dp.NgayTra >= ngayTra)) ||
+                              (dp.TrangThai == "Đã huỷ" || dp.TrangThai == "Đã từ chối"))
                 .Select(dp => dp.MaPhong)
-                .ToListAsync();
+                .ToList();
 
             var phongChuaDat = await _context.Phong
                 .Where(p => !maPhongDaDat.Contains(p.MaPhong))
@@ -149,6 +149,5 @@ namespace LakesideAPI.Controllers
 
             return phongChuaDat;
         }
-
     }
 }

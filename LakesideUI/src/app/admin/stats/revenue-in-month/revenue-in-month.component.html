@@ -27,4 +27,22 @@
 <br>
 <hr>
 <h2>Doanh thu tháng : {{month}} </h2>
-<h1>Doanh thu: {{revenue | currency:'VND' }}</h1>
+<h1>Tổng doanh thu: {{sumRevenue | currency:'VND' }}</h1>
+
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Phòng</th>
+        <th scope="col">Số lần đặt</th>
+        <th scope="col">Doanh thu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of revenue"  >
+        <!-- <th scope="row">1</th> -->
+        <td>{{item.phong}}</td>
+        <td>{{item.soLanDat}}</td>
+        <td>{{item.doanhThu | currency:'VND'}}</td>
+      </tr>
+    </tbody>
+  </table>

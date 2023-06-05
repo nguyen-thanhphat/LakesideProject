@@ -1,12 +1,12 @@
 .card-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 150px);
+    grid-template-columns: repeat(auto-fit, 250px);
     grid-gap: 10px;
   }
   
   .card {
-    width: 150px;
-    height: 100px;
+    width: 250px;
+    height: 200px;
     background-color: #fff;
     border-radius: 5px;
     display: flex;
