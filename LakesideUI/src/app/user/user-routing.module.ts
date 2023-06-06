@@ -8,6 +8,7 @@ import { SuccessComponent } from './success/success.component';
 import { RoomdetailsComponent } from './roomdetails/roomdetails.component';
 import { InfoNewComponent } from './info-new/info-new.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, children: [
@@ -38,6 +39,10 @@ const routes: Routes = [
     {
       path:'feedback',
       component: FeedbackComponent
+    },
+    {
+      path:'search',
+      component: SearchFilterComponent
     }
   ]}
 ];

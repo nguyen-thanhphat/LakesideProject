@@ -50,7 +50,7 @@
                         <div class="card-body">
                             <h6 style="color: #FF0000;">{{RoomTypeItem.tenLoaiPhong}}</h6>
                             <p class="card-text">Tiện ích : {{RoomTypeItem.tienIch}}</p>
-                            <p class="card-text">Thông tin : {{RoomTypeItem.thongTin}}</p>
+                            <p class="card-text">View : {{RoomTypeItem.nhinRa}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <button type="button" class="btn btn-outline-info" (click)="viewRoomTypeDetail(RoomTypeItem.maLoaiPhong)">Đặt ngay</button>
                                 <small class="text-body-secondary">Kích cỡ: {{RoomTypeItem.kichCo}}</small>
@@ -77,6 +77,5 @@
       </div>
       
 </div>
-
 <app-info-new></app-info-new>
 <app-feedback></app-feedback>
