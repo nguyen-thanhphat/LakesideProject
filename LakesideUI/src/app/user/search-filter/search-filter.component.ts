@@ -15,6 +15,8 @@ export class SearchFilterComponent {
   searchForm!: FormGroup;
   TypeRoomArray: any[] = [];
 
+  searchRoom: any[] = [];
+ 
   constructor(
     private searchService: SearchRoomService,
     private formBuilder: FormBuilder,
@@ -56,11 +58,33 @@ export class SearchFilterComponent {
         nhinRa
       )
       .subscribe((data: any) => {
-        this.searchResult = data;
-        console.log(this.searchResult);
+        this.searchRoom = data;
+        console.log(this.searchRoom);
       });
       console.error();
       
+  }
+
+  onBooking(item: any){
+    const checkIn = this.searchForm.value.checkIn;
+    const checkOut = this.searchForm.value.checkOut;
+
+    const days = this.calculateDays(checkIn, checkOut);
+    this.router.navigate([
+      '/info-booking',
+      {
+        //searchResult.maPhong,
+        searchResult: JSON.stringify(item),
+        days: days,
+        checkIn: checkIn,
+        checkOut: checkOut,
+      },
+    ]);
+  }
+
+  calculateDays(checkIn: string, checkOut: string): number {
+    const diff = new Date(checkOut).getTime() - new Date(checkIn).getTime();
+    return diff / (1000 * 60 * 60 * 24);
   }
 
   getListType() {

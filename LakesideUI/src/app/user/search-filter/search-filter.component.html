@@ -17,38 +17,39 @@
             </div>
             <div class="col-md-3">
                 <label for="number1" class="form-label">Tiện nghi</label>
-                <select class="form-select" formControlName="tienNghi" >
-                    <option > Máy lạnh</option>
-                    <option > Quầy bar mini</option>
-                    <option > Nước đóng chai</option>
-                    <option > Bàn làm việc</option>
-                    <option > Rèm cửa</option>
-                  </select>
+                <select class="form-select" formControlName="tienNghi">
+                    <option> Máy lạnh</option>
+                    <option> Quầy bar mini</option>
+                    <option> Nước đóng chai</option>
+                    <option> Bàn làm việc</option>
+                    <option> Rèm cửa</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <label for="number1" class="form-label">Mức giá</label>
-                <select class="form-select" formControlName="mucGia" >
-                    <option > 1000000</option>
-                    <option > 1500000</option>
-                    <option > 2000000</option>
-                    <option > 2500000</option>
-                  </select>
+                <select class="form-select" formControlName="mucGia">
+                    <option value="1000000"> 1.000.000đ</option>
+                    <option value="1500000"> 1.500.000đ</option>
+                    <option value="2000000"> 2.000.000đ</option>
+                    <option value="2500000"> 2.500.000đ</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <label for="number1" class="form-label">Nhìn ra</label>
-                <select class="form-select" formControlName="nhinRa" >
-                    <option > Phố</option>
-                    <option > Sông</option>
-                  </select>
+                <select class="form-select" formControlName="nhinRa">
+                    <option> Phố</option>
+                    <option> Sông</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <label for="number2" class="form-label">Loại phòng</label>
-                <select class="form-select" formControlName="maLoai" >
-                    <option *ngFor="let RoomItem of TypeRoomArray" [value]="RoomItem.maLoaiPhong">{{RoomItem.tenLoaiPhong}}</option>
-                  </select>
+                <select class="form-select" formControlName="maLoai">
+                    <option *ngFor="let RoomItem of TypeRoomArray" [value]="RoomItem.maLoaiPhong">
+                        {{RoomItem.tenLoaiPhong}}</option>
+                </select>
             </div>
             <div class="col-md-2 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary">Đặt ngay</button>
+                <button type="submit" class="btn btn-primary">Tìm</button>
             </div>
         </div>
     </form>
@@ -57,18 +58,19 @@
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div *ngFor="let item of searchResult" class="col-sm-4">
+            <div *ngFor="let item of searchRoom" class="col-sm-4">
                 <div class="col">
                     <div class="card shadow-sm">
                         <img *ngIf="item.urlImage"
-                        [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(item.urlImage)"
-                         alt="" style="width: 100%; height: 255px; object-fit: cover;">                        
+                            [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(item.urlImage)" alt=""
+                            style="width: 100%; height: 255px; object-fit: cover;">
                         <div class="card-body">
                             <h6 style="color: #FF0000;">{{item.tenLoaiPhong}}</h6>
                             <p class="card-text">Số phòng : {{item.tenPhong}}</p>
                             <p class="card-text">View : {{item.nhinRa}} </p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-outline-info" >Đặt ngay</button>
+                                <button type="button" class="btn btn-outline-info" (click)="onBooking(item)">Đặt
+                                    ngay</button>
                                 <small class="text-body-secondary">Kích cỡ: {{item.kichCo}} </small>
                             </div>
                         </div>
@@ -77,5 +79,4 @@
             </div>
         </div>
     </div>
-    <br>     
 </div>
