@@ -71,18 +71,18 @@
                             Biên lai
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/dashboard/room/available-by-type']">
                             <span data-feather="layers" class="align-text-bottom"></span>
-                            Available By Type
+                            Phòng chưa đặt | Loại
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/dashboard/room/available-rooms']">
                             <span data-feather="layers" class="align-text-bottom"></span>
-                            Available By Rooms
+                            Phòng chưa đặt | Phòng
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="flex-shrink-0 p-3" style="width: 280px;">
@@ -94,17 +94,27 @@
                         </button>
                         <div class="collapse " id="home-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a [routerLink]="['/dashboard/stats/revenue-in-range']" 
+                                <li><a [routerLink]="['/dashboard/stats/revenue-in-range']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Doanh thu trong khoảng
                                     </a>
                                 </li>
-                                <li><a [routerLink]="['/dashboard/stats/revenue-in-month']" 
+                                <li><a [routerLink]="['/dashboard/stats/revenue-in-month']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Doanh thu theo tháng
                                     </a>
                                 </li>
-                                <li><a [routerLink]="['/dashboard/stats/low-demand-room']" 
+                                <li><a [routerLink]="['/dashboard/room/available-by-type']"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                                        Phòng chưa đặt | Loại
+                                    </a>
+                                </li>
+                                <li><a [routerLink]="['/dashboard/room/available-rooms']"
+                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                                        Phòng chưa đặt
+                                    </a>
+                                </li>
+                                <!-- <li><a [routerLink]="['/dashboard/stats/low-demand-room']" 
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Phòng ít đặt trong khoảng
                                     </a>
@@ -113,7 +123,7 @@
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Phòng ít đặt trong tháng
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
@@ -124,22 +134,22 @@
                         </button>
                         <div class="collapse" id="dashboard-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><a [routerLink]="['/dashboard/booking/paid']" 
+                                <li><a [routerLink]="['/dashboard/booking/paid']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Đã thanh toán
                                     </a>
                                 </li>
-                                <li><a [routerLink]="['/dashboard/booking/booked']"  
+                                <li><a [routerLink]="['/dashboard/booking/booked']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Đã đặt
                                     </a>
                                 </li>
-                                <li><a [routerLink]="['/dashboard/booking/canceled']" 
+                                <li><a [routerLink]="['/dashboard/booking/canceled']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Đã huỷ
                                     </a>
                                 </li>
-                                <li><a [routerLink]="['/dashboard/booking/refused']"  
+                                <li><a [routerLink]="['/dashboard/booking/refused']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
                                         Đã từ chối
                                     </a>
@@ -156,17 +166,17 @@
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a [routerLink]="['']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                    Phương thức thanh toán
+                                        Phương thức thanh toán
                                     </a>
                                 </li>
                                 <li><a [routerLink]="['']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                    Tin tức
+                                        Tin tức
                                     </a>
                                 </li>
                                 <li><a [routerLink]="['']"
                                         class="link-body-emphasis d-inline-flex text-decoration-none rounded">
-                                    Phản hồi
+                                        Phản hồi
                                     </a>
                                 </li>
                             </ul>
