@@ -66,8 +66,6 @@ namespace LakesideAPI.Controllers
             return Ok(hoaDons);
         }
 
-
-
         [HttpGet("low-demand-room/{formDate}/{toDate}/{minimum}")]
         public IActionResult ThongKePhongItDat(DateTime formDate, DateTime toDate, int minimum)
         {

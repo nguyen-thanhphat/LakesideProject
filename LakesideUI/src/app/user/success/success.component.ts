@@ -12,8 +12,10 @@ import { environment } from 'src/environment/environment';
 export class SuccessComponent {
 
   currentBookingID = '';
-  searchResult: any = {};
+  searchResult: any = [];
   searchForm!: FormGroup;
+
+  trangThai = 'Đã huỷ';
 
   constructor(
     private searchService: SearchRoomService,
@@ -29,7 +31,6 @@ export class SuccessComponent {
 
   onSubmit(){
     const phoneNumber = this.searchForm.value.phoneNumber;
-
     this.searchService
       .searchReservations(phoneNumber)
       .subscribe((data: any) => {
@@ -38,14 +39,18 @@ export class SuccessComponent {
       })
   }
 
-  cancelBooking(){
-    const state = 'Đã huỷ'
-
-    this.http.put(`${environment.apiUrl}manage/edit-state/` + this.currentBookingID, state, { responseType: 'text' })
-    .subscribe((resData: any) => {
-      console.log(resData);
-      alert('Cập nhật trạng thái thành công');
-      this.searchResult();
-    })
+  updateState(bookingID: string){
+    const bodyData = {
+      trangThai: this.trangThai
+    };
+    this.http.put(`${environment.apiUrl}manage/edit-state/` + bookingID, bodyData, { responseType: 'text' })
+      .subscribe((resData: any) => {
+        console.log(resData);
+        alert('Đã huỷ đặt phòng!');
+        this.searchResult();
+      });
+  }
+  save(bookingID: string){
+    this.updateState(bookingID);
   }
 } 
