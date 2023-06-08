@@ -67,7 +67,8 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="imageInput" class="form-label">Hình ảnh:</label>
-                                <input class="form-control" type="file" id="imageInput" name="imageInput" [required]="true">
+                                <input class="form-control" type="file" id="imageInput" name="imageInput"
+                                    [required]="true">
                             </div>
                         </div>
                         <div class="btn-group me-2">
@@ -80,53 +81,48 @@
             </div>
         </div>
     </div>
-    <div *ngIf="isResultLoaded; else loading">
-        <table class="table">
-            <thead>
-                <!-- <h1 *ngIf="!isResultLoaded">Đang tải.................</h1> -->
-                <tr>
-                    <th scope="col">Mã</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Tiện ích</th>
-                    <th scope="col">Sức chứa</th>
-                    <th scope="col">Kích cỡ</th>
-                    <th scope="col">Giá phòng</th>
-                    <th scope="col">Phụ thu</th>
-                    <th scope="col">Hình ảnh</th>
-                    <th scope="col">Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let RoomTypeItem of roomTypes">
-                    <td>{{RoomTypeItem.maLoaiPhong }}</td>
-                    <td>{{RoomTypeItem.tenLoaiPhong }}</td>
-                    <td>{{RoomTypeItem.tienIch }}</td>
-                    <td>{{RoomTypeItem.sucChua }}</td>
-                    <td>{{RoomTypeItem.kichCo }}</td>
-                    <td>{{RoomTypeItem.giaPhong | currency:'VND' }}</td>
-                    <td>{{RoomTypeItem.phuThu | currency:'VND' }}</td>
-                    <td>
-                        <img style=" object-fit: cover; height: 100px; width: 100px; border-radius: 40%;"
-                            *ngIf="RoomTypeItem.urlImage"
-                            [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(RoomTypeItem.urlImage)"
-                            alt="Hình ảnh">
-                    </td>
-                    <td>
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" aria-expanded="true"
-                                (click)="setUpdate(RoomTypeItem)">Sửa</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                (click)="deleteRoomType(RoomTypeItem)">Xoá</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <ng-template #loading>
         <p>Loading...</p>
     </ng-template>
+
+
+<div *ngIf="isResultLoaded; else loading">
+<div class="container d-flex flex-column">
+    <div *ngFor="let RoomTypeItem of roomTypes" class="card m-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img class="card-img" *ngIf="RoomTypeItem.urlImage"
+                    [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(RoomTypeItem.urlImage)"
+                    alt="Hình ảnh">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">Loại phòng khách sạn! </h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="card-text">Loại phòng: {{RoomTypeItem.tenLoaiPhong }}</p>
+                            <p class="card-text">Sức chứa phòng: {{RoomTypeItem.sucChua}} </p>
+                            <p class="card-text">Kích cỡ phòng: {{RoomTypeItem.kichCo }} </p>
+                            <p class="card-text">Giá phòng : {{RoomTypeItem.giaPhong | currency:'VND' }} </p>
+                            <p class="card-text">Phụ thu : {{RoomTypeItem.phuThu | currency:'VND' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="card-text">Tiện ích của phòng</h6>
+                            <p class="card-text">{{RoomTypeItem.tienIch }} </p>
+                            <div class="btn-group me-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" aria-expanded="true"
+                                    (click)="setUpdate(RoomTypeItem)">Sửa</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    (click)="deleteRoomType(RoomTypeItem)">Xoá</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item disabled">
@@ -141,3 +137,45 @@
         </ul>
     </nav>
 </div>
+
+    
+<!-- <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Mã</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Tiện ích</th>
+            <th scope="col">Sức chứa</th>
+            <th scope="col">Kích cỡ</th>
+            <th scope="col">Giá phòng</th>
+            <th scope="col">Phụ thu</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let RoomTypeItem of roomTypes">
+            <td>{{RoomTypeItem.maLoaiPhong }}</td>
+            <td>{{RoomTypeItem.tenLoaiPhong }}</td>
+            <td>{{RoomTypeItem.tienIch }}</td>
+            <td>{{RoomTypeItem.sucChua }}</td>
+            <td>{{RoomTypeItem.kichCo }}</td>
+            <td>{{RoomTypeItem.giaPhong | currency:'VND' }}</td>
+            <td>{{RoomTypeItem.phuThu | currency:'VND' }}</td>
+            <td>
+                <img style=" object-fit: cover; height: 100px; width: 100px; border-radius: 40%;"
+                    *ngIf="RoomTypeItem.urlImage"
+                    [src]="'https://localhost:7000/api/images/type/' + getFileNameFromUrl(RoomTypeItem.urlImage)"
+                    alt="Hình ảnh">
+            </td>
+            <td>
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" aria-expanded="true"
+                        (click)="setUpdate(RoomTypeItem)">Sửa</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                        (click)="deleteRoomType(RoomTypeItem)">Xoá</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
